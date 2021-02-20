@@ -22,7 +22,6 @@ export default class SearchPage extends Component {
                 <h1>Cast Page </h1>
                  <div className = "poke-list">
                 <CastList castMembers = {this.state.castMembers}/>
-                console.log(CastList)
                 </div>
                 </div>
                 );
