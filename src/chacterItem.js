@@ -5,7 +5,7 @@ export default class CharacterItem extends Component {
     
     render() {
         return ( <Link to = {`${this.props.member.id}`} key = {this.props.member.id}>
-        <section className = "poke-info">
+        <section className = "character-info">
         <p>Name: {this.props.member.name}</p>
         </section>
     </Link>
