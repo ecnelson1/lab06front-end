@@ -17,7 +17,12 @@ export default withRouter(class PageHeader extends Component {
                     Home
                 </NavLink>
                 }
-               
+                {
+                    this.props.location.pathname !== '/create' &&
+                   <NavLink exact activeClassName = "selected" to = "/create">
+                    Create Character
+                </NavLink>
+                }
             </header>
          )
     }})

@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
-import request from 'superagent';
-import CastList from './castlist.js';
-
+import { Link } from "react-router-dom";
+import { getCast } from './appUtils.js';
 export default class SearchPage extends Component {
     state = {
         castMembers: [],
+        loading: false
         }
       componentDidMount = async () => {
-          await this.hireCast();
-        }
-      
-      hireCast = async () => {
-          const castMembers = await request.get(`https://serene-bayou-70686.herokuapp.com/characters`);
+          this.setState({loading :true,});
+          const CastMembers =await getCast();
           this.setState({
-              castMembers: castMembers.body,
-            });
+              castMembers: CastMembers,
+              loading: false
+            })
         }
-                render() {
-                return (
-            <div className = "page-display">
-                <h1>Cast Page </h1>
-                 <div className = "poke-list">
-                <CastList castMembers = {this.state.castMembers}/>
+    render() {
+        return (
+            <div className = "luci-list">
+                {this.state.castMembers.map(member => <Link
+                to ={`/cast/${member.id}`} key={member.name}>
+                <div className="character">
+                    <p>{member.name}</p>
+                    <p>{member.type}</p>
+                    <p>{member.seasons}</p>
+                    <p>{member.is_divine 
+                        ? 'Divine Blood Detected!' 
+                        : 'No Divinity'}</p>
                 </div>
-                </div>
-                );
-            }
-        }
+                </Link>
+                )}
+            </div>
+        )
+    }
+}
