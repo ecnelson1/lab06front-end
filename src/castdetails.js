@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getTypes, updateChar, getChar } from './appUtils';
+import { getTypes, updateChar, getChar, deleteChar } from './appUtils';
 
 export default class CastDetailsPage extends Component {
     state = {
@@ -21,6 +21,10 @@ export default class CastDetailsPage extends Component {
                 type: types.type,
                 types: types
               })
+          }
+          handleDelete = async (e) => {
+              await deleteChar(this.props.match.params.id);
+              this.props.history.push('/cast')
           }
           handleNameChange = (e) => this.setState({ name: e.target.value })
           handleSeasonsChange = (e) => this.setState({ seasons: Number(e.target.value) })
@@ -62,6 +66,7 @@ export default class CastDetailsPage extends Component {
                           </label>
                           <button>Update Character</button>
                       </form>
+                          <button onClick={this.handleDelete}>Delete Character</button>
                   </div>
               )
           }
