@@ -8,6 +8,7 @@ import CastPage from './castpage.js';
 import HomePage from './home.js';
 import PageHeader from './pageheader.js';
 import CastDetailsPage from './castdetails.js'
+import CreateCharacter from './createCharacter.js'
 
 export default class App extends Component {
     render() {
@@ -27,9 +28,14 @@ export default class App extends Component {
                             render={(routerProps) => <CastPage {...routerProps} />} 
                         />
                         <Route 
-                            path="/:id" 
+                            path="/cast/:id" 
                             exact
                             render={(routerProps) => <CastDetailsPage {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/create" 
+                            exact
+                            render={(routerProps) => <CreateCharacter {...routerProps} />} 
                         />
                     </Switch>
                 </Router>

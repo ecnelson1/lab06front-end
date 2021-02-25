@@ -4,21 +4,15 @@ const URL = 'https://serene-bayou-70686.herokuapp.com'
 
 export async function getCast(){
     const castMembers = await request.get(`${URL}/characters`);
-    this.setState({
-        castMembers: castMembers.body,
-    })
+    return castMembers.body
 };
 export async function getTypes(){
     const types = await request.get(`${URL}/types`);
-    this.setState({
-        types: types.body,
-    })
+    return types.body
 };
 export async function getChar(id){
-    const castMember = request.get(`${URL}/characters/${id}`);
-    this.setState({
-        memberDetails: castMember.body
-    });
+    const castMember = await request.get(`${URL}/characters/${id}`);
+    return castMember.body
 };
 
 export async function makeChar(newChar) {
@@ -28,7 +22,7 @@ export async function makeChar(newChar) {
 
         return Char.body;
 };
-export async function updateCandy(id, char) {
+export async function updateChar(id, char) {
     const updatedChar = await request.put(`${URL}/characters/${id}`)
         .send(char);
 

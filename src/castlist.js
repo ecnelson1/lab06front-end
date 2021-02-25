@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
-import CharacterItem from './chacterItem.js';
 
 export default class CastList extends Component {
     render() {
-        return this.props.castMembers.map(member => <CharacterItem member={member}  key = {member.id}/>)
+        return (
+            <div className = "luci-list">
+                {this.props.castMembers.map(member => <link to ={`/cast/${member.id}`} ket={member.name}>
+                <div className="character">
+                    <p>{member.name}</p>
+                    <p>{member.type}</p>
+                    <p>{member.seasons}</p>
+                    <p>{member.is_divine 
+                        ? 'Divine Blood Detected!' 
+                        : 'No Divinity'}</p>
+                </div>
+                </link>
+                )}
+            </div>
+        )
     }
 }
